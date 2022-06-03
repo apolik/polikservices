@@ -1,7 +1,7 @@
 package org.polik.fraud.controller;
 
 import lombok.AllArgsConstructor;
-import org.polik.fraud.response.FraudCheckResponse;
+import org.polik.clients.fraud.FraudCheckResponse;
 import org.polik.fraud.service.FraudCheckService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

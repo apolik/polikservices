@@ -1,4 +1,4 @@
-package org.polik.customer.response;
+package org.polik.clients.fraud;
 
 /**
  * Created by Polik on 5/31/2022
