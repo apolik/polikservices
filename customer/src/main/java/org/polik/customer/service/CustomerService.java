@@ -1,8 +1,9 @@
 package org.polik.customer.service;
 
+import lombok.AllArgsConstructor;
+import org.polik.amqp.producer.RabbitMQMessageProducer;
 import org.polik.clients.fraud.FraudCheckResponse;
 import org.polik.clients.fraud.FraudClient;
-import org.polik.clients.notification.NotificationClient;
 import org.polik.clients.notification.NotificationRequest;
 import org.polik.customer.model.Customer;
 import org.polik.customer.repository.CustomerRepository;
@@ -13,7 +14,12 @@ import org.springframework.stereotype.Service;
  * Created by Polik on 5/31/2022
  */
 @Service
-public record CustomerService(CustomerRepository repository, FraudClient fraudClient, NotificationClient notificationClient) {
+@AllArgsConstructor
+public final class CustomerService {
+    private final CustomerRepository repository;
+    private final FraudClient fraudClient;
+    private final RabbitMQMessageProducer messageProducer;
+
     public void register(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
                 .firstName(request.firstName())
@@ -35,6 +41,10 @@ public record CustomerService(CustomerRepository repository, FraudClient fraudCl
                 "Hello, buddy!"
         );
 
-        notificationClient.sendNotification(notificationRequest);
+        messageProducer.publish(
+                notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key"
+        );
     }
 }

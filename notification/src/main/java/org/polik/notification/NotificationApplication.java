@@ -7,7 +7,12 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 /**
  * Created by Polik on 6/3/2022
  */
-@SpringBootApplication
+@SpringBootApplication(
+        scanBasePackages = {
+                "org.polik.notification",
+                "org.polik.amqp"
+        }
+)
 @EnableEurekaClient
 public class NotificationApplication {
     public static void main(String[] args) {

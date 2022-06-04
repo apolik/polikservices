@@ -8,7 +8,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 /**
  * Created by Polik on 5/31/2022
  */
-@SpringBootApplication
+@SpringBootApplication(
+        scanBasePackages = {
+                "org.polik.customer",
+                "org.polik.amqp"
+        }
+)
 @EnableEurekaClient
 @EnableFeignClients(basePackages = "org.polik.clients")
 public class CustomerApplication {
