@@ -1,6 +1,7 @@
 package org.polik.customer.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.polik.amqp.producer.RabbitMQMessageProducer;
 import org.polik.clients.fraud.FraudCheckResponse;
 import org.polik.clients.fraud.FraudClient;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 /**
  * Created by Polik on 5/31/2022
  */
+@Slf4j
 @Service
 @AllArgsConstructor
 public final class CustomerService {
@@ -21,6 +23,7 @@ public final class CustomerService {
     private final RabbitMQMessageProducer messageProducer;
 
     public void register(CustomerRegistrationRequest request) {
+        log.info("register {}", request);
         Customer customer = Customer.builder()
                 .firstName(request.firstName())
                 .lastName(request.lastName())
