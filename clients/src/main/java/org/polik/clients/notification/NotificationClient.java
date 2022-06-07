@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 /**
  * Created by Polik on 2/1/2022
  */
-@FeignClient("notification")
+@FeignClient(
+        name = "notification",
+        url = "${clients.notification.url}"
+)
 public interface NotificationClient {
     @PostMapping("/api/v1/notification")
     void sendNotification(NotificationRequest request);
