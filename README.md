@@ -4,4 +4,4 @@
 ---
 
 
-![Settings Window](https://i.ibb.co/vdFwNx1/services.png?raw=true)
+![services.png](https://postimg.cc/mhtKrGRT)
