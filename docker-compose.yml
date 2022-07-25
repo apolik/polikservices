@@ -5,10 +5,7 @@ services:
     environment:
       POSTGRES_USER: polik
       POSTGRES_PASSWORD: password
-      POSTGRES_DB:
-        - customer
-        - fraud
-        - notification
+      POSTGRES_MULTIPLE_DATABASES: "customer,polik: fraud,polik: notification,polik"
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
